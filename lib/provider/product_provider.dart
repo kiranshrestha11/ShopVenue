@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/cupertino.dart';
 import 'package:shop_venue/models/product.dart';
 
@@ -44,6 +42,10 @@ class Products with ChangeNotifier {
 
   List<Product> get items {
     return [..._items];
+  }
+
+  List<Product> get favourites {
+    return _items.where((prod) => prod.isFavourite).toList();
   }
 
   Product findById(String id) {
