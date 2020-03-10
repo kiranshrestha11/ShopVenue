@@ -20,8 +20,23 @@ class Cart with ChangeNotifier {
   }
 
   //--total items in the cart--//
-  int get ItemCount {
+  int get itemCount {
     return _items == null ? 0 : _items.length;
+  }
+
+  //total amount in the cart
+  double get totalAmount {
+    var total = 0.0;
+    _items.forEach((key, cartItem) {
+      total += cartItem.price * cartItem.quantity;
+    });
+    return total;
+  }
+
+  //remove particular item from cart
+  void removeItem(String productId) {
+    _items.remove(productId);
+    notifyListeners();
   }
 
   //--adding item to cart--//
